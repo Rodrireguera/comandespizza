@@ -3,14 +3,9 @@ package com.example.comandespizza
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.comandespizza.ui.theme.ComandesPizzaTheme
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -45,30 +40,28 @@ fun PizzaApp() {
     ) {}
     when (pasActual) {
 
-        1 -> PantallaNom(nom)
+        1 -> PantallaNom(nom) {
+            nom = it
+            pasActual = 2
+        }
 
-        2 -> PantallaQuantitat(quantitat)
+        2 -> PantallaQuantitat(quantitat) {
+            val it = 0
+            quantitat = it
+            pasActual = 3
+        }
 
-        3 -> PantallaTipusPizza(
-            tipusPizza,
-            content = TODO()
-        )
+        3 -> PantallaTipusPizza(tipusPizza) {
+            tipusPizza = it
+            pasActual = 4
+        }
 
-        4 -> PantallaResum(nom, quantitat, tipusPizza)
+        4 -> PantallaResum(nom, quantitat, tipusPizza) {
+            pasActual = 5
+            contadorNormal++
+            contadorRemember++
+            contadorSaveable++
+        }
+
     }
-}
-
-@Composable
-fun PantallaResum(x0: String, x1: Int, x2: String) {
-    TODO("Not yet implemented")
-}
-
-@Composable
-fun PantallaQuantitat(x0: Int) {
-    TODO("Not yet implemented")
-}
-
-@Composable
-fun PantallaTipusPizza(x0: String, content: @Composable () -> Unit) {
-    TODO("Not yet implemented")
 }
