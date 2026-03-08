@@ -29,9 +29,7 @@ fun PizzaApp() {
     var quantitat by rememberSaveable { mutableStateOf(0) }
     var tipusPizza by rememberSaveable { mutableStateOf("") }
 
-    var contadorNormal = 0
-    var contadorRemember by remember { mutableStateOf(0) }
-    var contadorSaveable by rememberSaveable { mutableStateOf(0) }
+
 
     Column(
         modifier = Modifier
@@ -46,7 +44,6 @@ fun PizzaApp() {
         }
 
         2 -> PantallaQuantitat(quantitat) {
-            val it = 0
             quantitat = it
             pasActual = 3
         }
@@ -58,9 +55,6 @@ fun PizzaApp() {
 
         4 -> PantallaResum(nom, quantitat, tipusPizza) {
             pasActual = 5
-            contadorNormal++
-            contadorRemember++
-            contadorSaveable++
         }
 
     }

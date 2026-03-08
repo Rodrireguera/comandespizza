@@ -15,7 +15,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.material3.Button
 import androidx.compose.runtime.remember
 
-@Preview
 @Composable
 fun PantallaNom(
     nom: String,
