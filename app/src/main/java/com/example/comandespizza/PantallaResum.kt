@@ -1,5 +1,7 @@
 package com.example.comandespizza
 
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -11,28 +13,47 @@ import androidx.compose.runtime.setValue
 
 
 @Composable
-fun PantallaResum(){
-
+fun PantallaResum(
+    nom: String,
+    quantitat: Int,
+    tipusPizza: String,
+    onRestart: () -> Unit
+){
 
     var contadorNormal = 0
     var contadorRemember by remember { mutableStateOf(0) }
     var contadorSaveable by rememberSaveable { mutableStateOf(0) }
 
+    Column {
 
+        Text("Resum de la comanda de pizzes")
 
-    Button(
-        onClick = {
-            contadorNormal++
-            contadorRemember++
-            contadorSaveable++
+        Row {
+
+            Text("Nom del client: $nom")
+            Text("Quantitat de pizzes: $quantitat")
+            Text("Pizzes escullides: $tipusPizza")
+
+            Button(
+                onClick = { onRestart() }
+
+            ) {
+                Text("Reiniciar")
+            }
+
+            Button(
+                onClick = {
+                    contadorNormal++
+                    contadorRemember++
+                    contadorSaveable++
+                }
+            ) {
+                Text("+1 comptadors")
+            }
+
+            Text("Normal: $contadorNormal")
+            Text("Remember: $contadorRemember")
+            Text("Saveable: $contadorSaveable")
         }
-    ) {
-        Text("+1 comptadors")
     }
-
-    Text("Normal: $contadorNormal")
-    Text("Remember: $contadorRemember")
-    Text("Saveable: $contadorSaveable")
-
-
 }

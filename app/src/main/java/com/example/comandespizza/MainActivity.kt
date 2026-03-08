@@ -54,7 +54,7 @@ fun PizzaApp() {
         }
 
         4 -> PantallaResum(nom, quantitat, tipusPizza) {
-            pasActual = 5
+            pasActual = 1
         }
 
     }
