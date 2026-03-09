@@ -28,32 +28,29 @@ fun PantallaResum(
 
         Text("Resum de la comanda de pizzes")
 
-        Row {
+        Text("Nom del client: $nom \n")
+        Text("Quantitat de pizzes: $quantitat \n")
+        Text("Pizzes escullides: ${tipusPizza.removeSurrounding("[", "]") } \n")
 
-            Text("Nom del client: $nom")
-            Text("Quantitat de pizzes: $quantitat")
-            Text("Pizzes escullides: $tipusPizza")
-
-            Button(
-                onClick = { onRestart() }
-
-            ) {
+        Button(
+            onClick = { onRestart() }
+        ) {
                 Text("Reiniciar")
-            }
+          }
 
-            Button(
-                onClick = {
+        Button(
+             onClick = {
                     contadorNormal++
                     contadorRemember++
                     contadorSaveable++
-                }
+             }
             ) {
-                Text("+1 comptadors")
+            Text("+1 comptadors")
             }
 
-            Text("Normal: $contadorNormal")
-            Text("Remember: $contadorRemember")
-            Text("Saveable: $contadorSaveable")
-        }
+        Text("Normal: $contadorNormal")
+        Text("Remember: $contadorRemember")
+        Text("Saveable: $contadorSaveable")
+
     }
 }
