@@ -1,7 +1,6 @@
 package com.example.comandespizza
 
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
@@ -22,7 +21,8 @@ fun PantallaResum(
     nom: String,
     quantitat: Int,
     tipusPizza: String,
-    onRestart: () -> Unit
+    onRestart: () -> Unit,
+    onSeguent: () -> Unit
 ){
 
     var contadorNormal = 0
@@ -42,6 +42,15 @@ fun PantallaResum(
         Text("Nom del client: $nom \n")
         Text("Quantitat de pizzes: $quantitat \n")
         Text("Pizzes escullides: ${tipusPizza.removeSurrounding("[", "]") } \n")
+
+
+        Button(
+            onClick = { onSeguent() },
+            enabled = false
+        ) {
+            Text("Següent")
+        }
+
 
         Button(
             onClick = { onRestart() }

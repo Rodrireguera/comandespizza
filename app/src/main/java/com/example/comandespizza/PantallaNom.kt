@@ -18,7 +18,7 @@ import androidx.compose.runtime.remember
 @Composable
 fun PantallaNom(
     nom: String,
-    onClick: (String) -> Unit
+    onNext: (String) -> Unit
 ) {
 
     var text by remember { mutableStateOf(nom) }
@@ -33,7 +33,7 @@ fun PantallaNom(
         )
 
         Button(
-            onClick = { onClick(text) },
+            onClick = { onNext(text) },
             enabled = text.isNotBlank()
         ) {
             Text("Següent")

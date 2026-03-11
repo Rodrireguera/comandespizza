@@ -96,12 +96,18 @@ fun PizzaApp(lifecycleViewModel: LifecycleViewModel) {
                 pasActual = 4
             }
 
-            4 -> PantallaResum(nom, quantitat, tipusPizza) {
-                pasActual = 1
-                nom = ""
-                quantitat = 0
-                tipusPizza = ""
-            }
+            4 -> PantallaResum(
+                nom,
+                quantitat,
+                tipusPizza,
+                onRestart = {
+                    pasActual = 1
+                    nom = ""
+                    quantitat = 0
+                    tipusPizza = ""
+                },
+                onSeguent = {},
+            )
         }
 
         Spacer(modifier = Modifier.height(20.dp))
