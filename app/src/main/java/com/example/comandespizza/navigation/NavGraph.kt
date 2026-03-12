@@ -1,20 +1,16 @@
 package com.example.comandespizza.navigation
 
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import androidx.navigation.compose.rememberNavController
+import androidx.navigation.compose.*
 import com.example.comandespizza.PizzaViewModel
 import com.example.comandespizza.screens.ComandaScreen
 import com.example.comandespizza.screens.IniciScreen
 import com.example.comandespizza.screens.ResumScreen
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -23,10 +19,22 @@ fun NavGraph() {
     val navController = rememberNavController()
     val viewModel: PizzaViewModel = viewModel()
 
+    val currentRoute = navController.currentBackStackEntryAsState().value?.destination?.route
+
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Comanda de Pizzes") }
+                title = { Text("Comanda de Pizzes") },
+
+                actions = {
+                    if (currentRoute != "inici") {
+                        Button(
+                            onClick = { navController.popBackStack() }
+                        ) {
+                            Text("Tornar enrera")
+                        }
+                    }
+                }
             )
         }
     ) { padding ->
@@ -46,10 +54,11 @@ fun NavGraph() {
             }
 
             composable("resum") {
-                ResumScreen(navController, viewModel, onRestart = { viewModel.reiniciar() })
+                ResumScreen(navController, viewModel)
             }
 
         }
     }
 }
+
 

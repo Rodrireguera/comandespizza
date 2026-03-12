@@ -7,13 +7,19 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.comandespizza.PizzaViewModel
 
 @Composable
-fun ResumScreen (navController: NavController, viewModel: PizzaViewModel, onRestart: () -> Unit){
+fun ResumScreen (navController: NavController, viewModel: PizzaViewModel){
+
+    var comandaConfirmada by remember { mutableStateOf(false) }
 
     Column {
 
@@ -30,7 +36,7 @@ fun ResumScreen (navController: NavController, viewModel: PizzaViewModel, onRest
         Text("Pizzes escullides: ${viewModel.tipusPizza.removeSurrounding("[", "]") }")
 
         Button(onClick = { viewModel.reiniciar()
-            navController.navigate("inici")     }) {
+            navController.navigate("inici")}) {
             Text("Reiniciar")
         }
 
@@ -41,9 +47,9 @@ fun ResumScreen (navController: NavController, viewModel: PizzaViewModel, onRest
         Spacer(modifier = Modifier.height(8.dp))
 
         Button(
-            onClick = { onRestart() }
+            onClick = { comandaConfirmada = true }
         ) {
-            Text("Comanda Confirmada")
+            Text("Confirmar")
         }
 
     }
